@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:food_delivery/components/my_current_location.dart';
 import 'package:food_delivery/components/my_drawer.dart';
 import 'package:food_delivery/components/my_silver_app_bar.dart';
 
@@ -26,8 +27,9 @@ class _HomePageState extends State<HomePage> {
                   indent: 25,
                   endIndent: 25,
                   color: Theme.of(context).colorScheme.secondary,
-                )
+                ),
                 //my current location
+                MyCurrentLocation()
 
                 //description box
 

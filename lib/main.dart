@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:food_delivery/auth/login_or_register.dart';
-import 'package:food_delivery/pages/theme/theme_privider.dart';
+import 'package:food_delivery/theme/theme_privider.dart';
 import 'package:provider/provider.dart';
 
 void main() {

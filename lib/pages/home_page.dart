@@ -2,8 +2,10 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:food_delivery/components/my_current_location.dart';
+import 'package:food_delivery/components/my_description_box.dart';
 import 'package:food_delivery/components/my_drawer.dart';
 import 'package:food_delivery/components/my_silver_app_bar.dart';
+import 'package:food_delivery/components/my_tab_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,7 +14,22 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
+  // tab controller
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(  
@@ -20,6 +37,9 @@ class _HomePageState extends State<HomePage> {
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
           MySilverAppBar(
+            title: MyTabBar(
+              tabController: _tabController,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -29,16 +49,41 @@ class _HomePageState extends State<HomePage> {
                   color: Theme.of(context).colorScheme.secondary,
                 ),
                 //my current location
-                MyCurrentLocation()
+                const MyCurrentLocation(),
 
                 //description box
+                const MyDescriptionBox()
 
               ],
-            ),
-            title: Text("title")
+            )
           )
         ],
-        body: Container(color: Colors.blue),
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+           ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, index) => ListTile(
+              title: Text('Item $index'),
+            ),
+           ),
+
+           ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) => ListTile(
+                title: Text('Item $index'),
+              ),
+            ),
+
+            ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) => ListTile(
+                title: Text('Item $index'),
+              ),
+            )
+
+          ],
+        )
         
       ),
     );

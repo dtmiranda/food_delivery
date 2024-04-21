@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/pages/theme/theme_privider.dart';
+import 'package:food_delivery/theme/theme_privider.dart';
 import 'package:provider/provider.dart';
 
 
